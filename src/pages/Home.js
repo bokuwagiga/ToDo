@@ -12,8 +12,7 @@ const Home = ({ isDarkMode }) => {
       try {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        console.log('sizes',width,height)
-        const response = await fetch(`https://picsum.photos/${width}/${height}?grayscale`);
+        const response = await fetch(`https://picsum.photos/${width}/${height}`);
         setImageUrl(response.url);
       } catch (error) {
         console.error('Error fetching image:', error);
@@ -34,7 +33,9 @@ const Home = ({ isDarkMode }) => {
 
   return (
     <div className="home-image-container">
-      {imageUrl && <img src={imageUrl} alt="Random" className="home-image" />}
+      {imageUrl && (
+        <img src={imageUrl} alt="Random" className={`home-image ${isDarkMode ? 'dark-mode' : ''}`} />
+      )}
       <div className="home-overlay">
         <div className="home-text">
           <h1>{t('welcome')}</h1>

@@ -7,8 +7,13 @@ const useTodos = () => {
         return savedTodos ? JSON.parse(savedTodos) : [];
     });
 
+    const [fetched, setFetched] = useState(() => {
+        const savedFetched = localStorage.getItem('fetched');
+        return savedFetched ? JSON.parse(savedFetched) : false;
+    });
+
     useEffect(() => {
-        if (todos.length === 0) {
+        if (todos.length === 0 && !fetched) {
             const fetchTodos = async () => {
                 try {
                     const response = await axios.get('https://dummyjson.com/todos');
@@ -18,14 +23,18 @@ const useTodos = () => {
                         completed: todo.completed
                     }));
                     setTodos(fetchedTodos);
+                    setFetched(true);
+                    localStorage.setItem('fetched', true);
                 } catch (error) {
                     console.error('Error fetching todos:', error);
                     setTodos([]);
+                    setFetched(true);
+                    localStorage.setItem('fetched', true);
                 }
             };
             fetchTodos();
         }
-    }, [todos.length]); 
+    }, [todos.length, fetched]);
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
