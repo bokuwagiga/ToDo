@@ -1,48 +1,56 @@
-//EditTodoModal.js
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from './Modal';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 const EditTodoModal = ({ isOpen, onClose, todo, onEdit, isDarkMode }) => {
-  const [editText, setEditText] = useState(todo.text);
   const { t } = useTranslation();
 
-  const handleInputChange = e => {
-    setEditText(e.target.value);
-  };
+  const schema = yup.object().shape({
+    editText: yup
+      .string()
+      .required(t('text_required'))
+      .max(100, t('text_too_long')),
+  });
 
-  const handleSaveEdit = () => {
-    const trimmedText = editText.trim();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: { editText: todo.text },
+  });
+
+  const handleSaveEdit = (data) => {
+    const trimmedText = data.editText.trim();
     if (trimmedText !== todo.text) {
       onEdit(todo.id, trimmedText);
     }
     onClose();
   };
 
-  const handleKeyPress = e => {
-    if (e.key === 'Enter') {
-      handleSaveEdit();
-    }
-  };
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} isDarkMode={isDarkMode}>
-      <input
-        type="text"
-        value={editText}
-        onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
-        className={`input ${isDarkMode ? 'dark-mode' : ''}`}
-        autoFocus
-      />
-      <div className="modal-actions">
-        <button className="positive-button" onClick={handleSaveEdit}>
-        {t('save')}
-        </button>
-        <button className="negative-button" onClick={onClose}>
-        {t('cancel')}
-        </button>
-      </div>
+      <form onSubmit={handleSubmit(handleSaveEdit)}>
+        <input
+          type="text"
+          {...register('editText')}
+          className={`input ${isDarkMode ? 'dark-mode' : ''}`}
+          autoFocus
+        />
+        {errors.editText && (
+          <p className={`validation-message`}>
+            {errors.editText.message}
+          </p>
+        )}
+        <div className="modal-actions">
+          <button type="submit" className="positive-button">
+            {t('save')}
+          </button>
+          <button type="button" className="negative-button" onClick={onClose}>
+            {t('cancel')}
+          </button>
+        </div>
+      </form>
     </Modal>
   );
 };

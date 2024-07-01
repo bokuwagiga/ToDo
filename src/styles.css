@@ -255,7 +255,6 @@ body {
 .todo-text {
     flex: 1;
     margin-left: 8px;
-    cursor: pointer;
 }
 
 .todo-text.completed {
@@ -641,67 +640,96 @@ opacity: 0.8;
 }
   
 @media (max-width: 768px) {
-.navbar {
-    flex-direction: row;
-    align-items: center;
-}
-
-.navbar .nav-links {
-    display: none;
-}
-
-.navbar .menu-toggle {
-    display: block;
-}
-
-.navbar .nav-links.open {
-    display: flex;
-    flex-direction: column; 
-    width: 100%;
-}
-
-.navbar .nav-link {
-    margin: 5px 0;
-}
-
-.app {
-    padding: 10px;
-}
-
-.content {
-    padding: 10px;
-}
-
-.footer {
-    padding: 10px;
-}
-
-.todo-item {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.todo-text {
-    margin-left: 0;
-    margin-top: 8px;
-}
-
-.input, .select, .todo-form-button {
-    width: 100%;
-}
-
-
-
-.home-text h1 {
-    font-size: 24px;
-}
-
-.home-text p {
-    font-size: 16px;
-}
-
-.go-to-todos-button {
-    font-size: 16px;
-    padding: 8px 16px;
-}
-}
+    .navbar {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .navbar .nav-links {
+      display: none;
+    }
+  
+    .navbar .menu-toggle {
+      display: block;
+    }
+  
+    .navbar .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .navbar .nav-link {
+      margin: 5px 0;
+    }
+  
+    .app {
+      padding: 10px;
+    }
+  
+    .content {
+      padding: 10px;
+    }
+  
+    .footer {
+      padding: 10px;
+    }
+  
+    .todo-item {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  
+    .todo-text {
+      margin-left: 0;
+      margin-top: 8px;
+      flex: 1;
+      margin-right: 10px;
+      word-wrap: break-word;
+    }
+  
+    .todo-checkbox {
+      margin-right: 10px;
+    }
+  
+    .button-container {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+  
+    .button-container .fa-icon-edit,
+    .button-container .fa-icon-delete {
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  
+    .input, .select, .todo-form-button {
+      width: 100%;
+    }
+  
+    .home-overlay {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0 5px;
+    }
+  
+    .home-text h1 {
+      font-size: 24px;
+    }
+  
+    .home-text p {
+      font-size: 16px;
+    }
+  
+    .go-to-todos-button {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
