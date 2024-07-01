@@ -1,0 +1,23 @@
+{
+    "en":"EN",
+    "ka":"KA",
+    "welcome": "Welcome to the Todo App",
+    "manage_tasks": "Manage your tasks efficiently and effectively.",
+    "go_to_todos": "Go To Todos",
+    "about_app": "About This App",
+    "description": "This is a simple Todo app incorporating various modern features and practices, built with React By Giga Shubitidze as the final project for the React course at BTU.",
+    "home":"Home",
+    "todos":"Todos",
+    "about":"About",
+    "add_new_todo":"Add New Todo",
+    "enter_todo":"Enter Todo",
+    "enter_new_todo":"Enter New Todo...",
+    "all":"All",
+    "completed":"Completed",
+    "uncompleted":"Uncompleted",
+    "search_todos":"Search Todos...",
+    "add":"Add",
+    "save":"Save",
+    "cancel":"Cancel"
+  }
+  

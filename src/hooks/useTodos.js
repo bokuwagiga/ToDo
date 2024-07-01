@@ -2,25 +2,34 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useTodos = () => {
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(() => {
+        const savedTodos = localStorage.getItem('todos');
+        return savedTodos ? JSON.parse(savedTodos) : [];
+    });
 
     useEffect(() => {
-        const fetchTodos = async () => {
-            try {
-                const response = await axios.get('https://dummyjson.com/todos');
-                const fetchedTodos = response.data.todos.map(todo => ({
-                    id: todo.id,
-                    text: todo.todo,
-                    completed: todo.completed
-                }));
-                setTodos(fetchedTodos);
-            } catch (error) {
-                console.error('Error fetching todos:', error);
-                setTodos([]);
-            }
-        };
-        fetchTodos();
-    }, []);
+        if (todos.length === 0) {
+            const fetchTodos = async () => {
+                try {
+                    const response = await axios.get('https://dummyjson.com/todos');
+                    const fetchedTodos = response.data.todos.map(todo => ({
+                        id: todo.id,
+                        text: todo.todo,
+                        completed: todo.completed
+                    }));
+                    setTodos(fetchedTodos);
+                } catch (error) {
+                    console.error('Error fetching todos:', error);
+                    setTodos([]);
+                }
+            };
+            fetchTodos();
+        }
+    }, [todos.length]); 
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
     const addTodo = (text) => {
         const newTodo = { id: Date.now(), text, completed: false };

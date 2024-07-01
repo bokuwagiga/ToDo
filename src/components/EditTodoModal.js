@@ -1,9 +1,11 @@
 //EditTodoModal.js
 import React, { useState } from 'react';
 import Modal from './Modal';
+import { useTranslation } from 'react-i18next';
 
 const EditTodoModal = ({ isOpen, onClose, todo, onEdit, isDarkMode }) => {
   const [editText, setEditText] = useState(todo.text);
+  const { t } = useTranslation();
 
   const handleInputChange = e => {
     setEditText(e.target.value);
@@ -35,10 +37,10 @@ const EditTodoModal = ({ isOpen, onClose, todo, onEdit, isDarkMode }) => {
       />
       <div className="modal-actions">
         <button className="positive-button" onClick={handleSaveEdit}>
-          Save
+        {t('save')}
         </button>
         <button className="negative-button" onClick={onClose}>
-          Cancel
+        {t('cancel')}
         </button>
       </div>
     </Modal>

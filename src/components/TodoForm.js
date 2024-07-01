@@ -4,6 +4,7 @@ import Modal from './Modal';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
     todoText: yup
@@ -13,6 +14,7 @@ const schema = yup.object().shape({
 });
 
 const TodoForm = ({ onSubmit, isDarkMode, filter, setFilter }) => {
+    const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
@@ -39,14 +41,14 @@ const TodoForm = ({ onSubmit, isDarkMode, filter, setFilter }) => {
     return (
         <div className={`todo-form ${isDarkMode ? 'dark-mode' : ''}`}>
             <button className="todo-form-button" onClick={handleOpenModal}>
-                Add New Todo
+            {t('add_new_todo')}
             </button>
             <select
                 className={`select ${isDarkMode ? 'dark-mode' : ''}`}
                 value={filter} onChange={handleFilterChange}>
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
+                <option value="all">{t('all')}</option>
+                <option value="completed">{t('completed')}</option>
+                <option value="uncompleted">{t('uncompleted')}</option>
             </select>
             <Modal isDarkMode={isDarkMode} isOpen={showModal} onClose={handleCloseModal}>
                 <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -54,7 +56,7 @@ const TodoForm = ({ onSubmit, isDarkMode, filter, setFilter }) => {
                         type="text"
                         {...register('todoText')}
                         className={`input ${isDarkMode ? 'dark-mode' : ''}`}
-                        placeholder="Enter new todo..."
+                        placeholder={t('enter_new_todo')}
                     />
                     {errors.todoText && (
                         <p className={`validation-message ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -63,10 +65,10 @@ const TodoForm = ({ onSubmit, isDarkMode, filter, setFilter }) => {
                     )}
                     <div className="modal-actions">
                         <button type="submit" className="positive-button">
-                            Add
+                        {t('add')}
                         </button>
                         <button type="button" className="negative-button" onClick={handleCloseModal}>
-                            Cancel
+                        {t('cancel')}
                         </button>
                     </div>
                 </form>
