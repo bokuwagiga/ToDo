@@ -1,3 +1,4 @@
+//TodoForm.js
 import React, { useState } from 'react';
 import Modal from './Modal';
 import { useForm } from 'react-hook-form';
@@ -11,8 +12,9 @@ const TodoForm = ({ onSubmit, isDarkMode, filter, setFilter }) => {
     const schema = yup.object().shape({
         todoText: yup
             .string()
+            .trim()
             .required(t('text_required'))
-            .max(100, t('text_too_long')),
+            .max(200, t('text_too_long')),
     });
 
     const [showModal, setShowModal] = useState(false);

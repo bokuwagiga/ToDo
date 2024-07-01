@@ -1,3 +1,4 @@
+//EditTodoModal.js
 import React from 'react';
 import Modal from './Modal';
 import { useTranslation } from 'react-i18next';
@@ -11,8 +12,9 @@ const EditTodoModal = ({ isOpen, onClose, todo, onEdit, isDarkMode }) => {
   const schema = yup.object().shape({
     editText: yup
       .string()
+      .trim()
       .required(t('text_required'))
-      .max(100, t('text_too_long')),
+      .max(200, t('text_too_long')),
   });
 
   const { register, handleSubmit, formState: { errors } } = useForm({

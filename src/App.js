@@ -8,7 +8,7 @@ import TodoPage from './pages/TodoPage';
 import About from './pages/About';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import i18n from './i18n'; // Ensure i18n is imported
+import i18n from './i18n';
 
 const App = () => {
   const [isDarkMode, toggleDarkMode] = useDarkMode();

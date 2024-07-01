@@ -20,6 +20,6 @@
     "save":"Save",
     "cancel":"Cancel",
     "text_required":"Todo text is required",
-    "text_too_long":"Todo text cannot exceed 100 characters"
+    "text_too_long":"Todo text cannot exceed 200 characters"
   }
   
