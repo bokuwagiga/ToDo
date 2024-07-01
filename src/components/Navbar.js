@@ -48,7 +48,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
         <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('home')}</Link>
           <Link to="/todos" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('todos')}</Link>
-          <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('about')}</Link>
+          <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('about_app')}</Link>
           <div className="menu-dark-mode-toggle">
             <DarkModeToggle darkMode={isDarkMode} onToggle={toggleDarkMode} />
             <img 
