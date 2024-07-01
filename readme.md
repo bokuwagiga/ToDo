@@ -77,7 +77,7 @@ This project is a Single Page Application (SPA) built using React.
 
 1. **Clone the repository:**
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/bokuwagiga/ToDo.git
    ```
 2. **Install the dependencies:**
    ```sh
